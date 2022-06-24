@@ -1,5 +1,6 @@
 package com.facebook.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.facebook.DAO.facebookDAOinterface;
@@ -24,7 +25,7 @@ public class facebookservice implements facebookserviceinterface {
 	}
 
 	@Override
-	public int searchprofileservice(facebookuser fu) {
+	public ArrayList<facebookuser> searchprofileservice(facebookuser fu) {
 		facebookDAOinterface fi= DAOfactory.createobject();
 		
 		return fi.searchprofileDAO(fu);
@@ -32,13 +33,13 @@ public class facebookservice implements facebookserviceinterface {
 
 	@Override
 	public int editprofileservice(facebookuser fu, facebookuser fu1) {
-facebookDAOinterface fi= DAOfactory.createobject();
+		facebookDAOinterface fi= DAOfactory.createobject();
 		
-		return fi.editprofileDAO(fu);
+		return fi.editprofileDAO(fu, fu1);
 	}
 
 	@Override
-	public List<facebookuser> viewallprofieservice() {
+	public ArrayList<facebookuser> viewallprofieservice() {
 		facebookDAOinterface fi= DAOfactory.createobject();
 		return fi.viewallprofileDAO();
 		
@@ -57,7 +58,7 @@ facebookDAOinterface fi= DAOfactory.createobject();
 	@Override
 	public facebookuser signinprofileservice(facebookuser fu) {
 		facebookDAOinterface fi= DAOfactory.createobject();
-		return fi.signinprofileDAO(fu);
+		return fi.viewprofileDAO(fu);
 		
 	}
 

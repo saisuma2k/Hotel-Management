@@ -27,8 +27,8 @@ public class Facebookview {
 			switch(ch) {
 			case 1: fi.signupcontroller();
 			     break;
-			case 2:fi.signincontroller();
-			     if(fi!=null) {
+			case 2:facebookuser user = fi.signincontroller();
+			     if(user!=null) {
 			     String s2="y";
 			     while(s2.equals("y"))
 			     {

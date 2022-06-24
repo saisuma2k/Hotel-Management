@@ -30,8 +30,8 @@ public class facebookDAO implements facebookDAOinterface {
 		int i=0;
 		try {
 			
-			PreparedStatement ps=con.prepareStatement(" delete from facebookuser where name=?");
-		    ps.setString(1,fu.getName());
+			PreparedStatement ps=con.prepareStatement(" delete from facebookuser where email=?");
+		    ps.setString(1,fu.getEmail());
 		    i=ps.executeUpdate();
 		  		}
 		  		catch(Exception e) {
@@ -45,8 +45,8 @@ public class facebookDAO implements facebookDAOinterface {
 		facebookuser s1=null;
 		try {
 			
-			PreparedStatement ps=con.prepareStatement("select*from facebookuser where address=?");
-			 ps.setString(1,fu.getAddress());
+			PreparedStatement ps=con.prepareStatement("select*from facebookuser where email=?");
+			 ps.setString(1,fu.getEmail());
 			 
 			 ResultSet res=ps.executeQuery();
 			 if(res.next()) {
@@ -72,31 +72,57 @@ public class facebookDAO implements facebookDAOinterface {
 	}
 
 	@Override
-	public int searchprofileDAO(facebookuser fu) {
-		int i=0;
+	public ArrayList<facebookuser> searchprofileDAO(facebookuser fu) {
+		ArrayList<facebookuser> ll = new ArrayList<facebookuser>();
+		facebookuser user= null;
 		try {
 			
 			PreparedStatement ps=con.prepareStatement(" select*from facebookuser where name=?");
 		    ps.setString(1,fu.getName());
-		    i=ps.executeUpdate();
-		  		}
-		  		catch(Exception e) {
-		  			e.printStackTrace();
-		  		}
-		  		return i;
+		    ResultSet res = ps.executeQuery();
+		    while (res.next()) {
+		    	String n = res.getString(1);
+		    	String p = res.getString(2);
+		    	String e = res.getString(3);
+		    	String a = res.getString(4);
+		    	
+		    	user = new facebookuser();
+		    	user.setName(n);
+		    	user.setPassword(p);
+		    	user.setEmail(e);
+		    	user.setAddress(a);
+		    	
+		    	ll.add(user);
+		    }
 		  	}
-
-	@Override
-	public int editprofileDAO(facebookuser fu) {
-		
-		
-		
-		return 0;
+		catch(Exception e) {
+  			e.printStackTrace();
+  			}
+		return ll;
 	}
 
 	@Override
-	public List<facebookuser> viewallprofileDAO() {
-		List<facebookuser> ll=new ArrayList<facebookuser>();
+	public int editprofileDAO(facebookuser fu, facebookuser fu1) {
+		int i=0;
+		try {
+			
+			PreparedStatement ps=con.prepareStatement("update facebookuser set name=?,password=?,address=? where email = ?");
+		    ps.setString(1,fu1.getName());
+		    ps.setString(2,fu1.getPassword());
+		    ps.setString(3,fu1.getAddress());
+		    ps.setString(4,fu.getEmail());
+		    
+		    i=ps.executeUpdate();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
+
+	@Override
+	public ArrayList<facebookuser> viewallprofileDAO() {
+		ArrayList<facebookuser> ll=new ArrayList<facebookuser>();
 		try {
 			PreparedStatement ps=con.prepareStatement("select*from facebookuser");
 			
@@ -145,27 +171,29 @@ public class facebookDAO implements facebookDAOinterface {
 
 	@Override
 	public facebookuser signinprofileDAO(facebookuser fu) {
-		facebookuser data = null;
+		facebookuser user = null;
 		try {
 			PreparedStatement ps = con.prepareStatement("select * from facebookuser where email=?");
 			ps.setString(1,fu.getEmail());
 			
-			ResultSet s1 =ps.executeQuery();
-			if(s1.next()) {
-				String p=s1.getString(2);
-				String e=s1.getString(3);
-				
-				data=new facebookuser();
-				
-				data.setPassword(p);
-				data.setEmail(e);			
+			ResultSet s =ps.executeQuery();
+			if(s.next()) {
+				String n=s.getString(1);
+				String p=s.getString(2);
+				String e=s.getString(3);
+				String a=s.getString(4);
+				user=new facebookuser();
+				user.setName(n);
+				user.setPassword(p);
+				user.setEmail(e);
+				user.setAddress(a);			
 			}
 		}
 		catch(Exception e)  {
 			e.printStackTrace();
 			
 		}
-		return data;
+		return user;
 	}
 	}
 

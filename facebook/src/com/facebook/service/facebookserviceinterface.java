@@ -1,5 +1,6 @@
 package com.facebook.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.facebook.entity.facebookuser;
@@ -11,11 +12,11 @@ public interface facebookserviceinterface {
 
 	facebookuser viewprofileservice(facebookuser fu);
 
-	int searchprofileservice(facebookuser fu);
+	ArrayList<facebookuser> searchprofileservice(facebookuser fu);
 
 	int editprofileservice(facebookuser fu, facebookuser fu1);
 
-	List<facebookuser> viewallprofieservice();
+	ArrayList<facebookuser> viewallprofieservice();
 
 	int signupprofileservice(facebookuser fu);
 

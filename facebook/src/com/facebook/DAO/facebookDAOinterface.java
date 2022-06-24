@@ -1,5 +1,6 @@
 package com.facebook.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.facebook.entity.facebookuser;
@@ -11,11 +12,11 @@ public interface facebookDAOinterface {
 
 	facebookuser viewprofileDAO(facebookuser fu);
 
-	int searchprofileDAO(facebookuser fu);
+	ArrayList<facebookuser> searchprofileDAO(facebookuser fu);
 
-	int editprofileDAO(facebookuser fu);
+	int editprofileDAO(facebookuser fu, facebookuser fu1);
 
-	List<facebookuser> viewallprofileDAO();
+	ArrayList<facebookuser> viewallprofileDAO();
 
 	int signupprofileDAO(facebookuser fu);
 

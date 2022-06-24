@@ -2,6 +2,8 @@ package com.facebook.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,20 +38,20 @@ public class ControllerTest {
 
 	@Test
 	public void testViewprofilecontroller() {
-		 int i=fi.viewprofilecontroller();
-	     assert i>0:"test case fail to view profile";
+		 facebookuser i=fi.viewprofilecontroller();
+	     assert i!=null:"test case fail to view profile";
 	}
 
 	@Test
 	public void testSearchprofilecontroller() {
-		 int i=fi.searchprofilecontroller();
-	     assert i>0:"test case fail to search profile";
+		 ArrayList<facebookuser> i=fi.searchprofilecontroller();
+	     assert i!=null:"test case fail to search profile";
 	}
 
 	@Test
 	public void testViewallprofilecontroller() {
-		 int i=fi.viewallprofilecontroller();
-	     assert i>0:"test case fail to viewall profile";
+		 ArrayList<facebookuser> i=fi.viewallprofilecontroller();
+	     assert i!=null:"test case fail to viewall profile";
 	}
 
 	@Test

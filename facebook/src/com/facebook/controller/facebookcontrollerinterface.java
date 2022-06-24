@@ -1,5 +1,7 @@
 package com.facebook.controller;
 
+import java.util.ArrayList;
+
 import com.facebook.entity.facebookuser;
 
 public interface facebookcontrollerinterface {
@@ -9,11 +11,11 @@ public interface facebookcontrollerinterface {
 
 	int deleteprofilecontroller();
 
-	int viewprofilecontroller();
+	facebookuser viewprofilecontroller();
 
-	int searchprofilecontroller();
+	ArrayList<facebookuser> searchprofilecontroller();
 
-	int viewallprofilecontroller();
+	ArrayList<facebookuser> viewallprofilecontroller();
 
 	int signupcontroller();
 
